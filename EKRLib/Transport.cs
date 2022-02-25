@@ -1,10 +1,7 @@
-﻿using System;
-using System.Transactions;
-
-namespace EKRLib
+﻿namespace EKRLib
 {
     /// <summary>
-    /// Абстрактный класс Transport
+    ///     Абстрактный класс Transport
     /// </summary>
     public abstract class Transport
     {
@@ -13,7 +10,18 @@ namespace EKRLib
         private uint _power;
 
         /// <summary>
-        /// Модель транспорта.
+        ///     Конструктор класса.
+        /// </summary>
+        /// <param name="model">Модель.</param>
+        /// <param name="power">Мощность.</param>
+        protected Transport(string model, uint power)
+        {
+            Model = model;
+            Power = power;
+        }
+
+        /// <summary>
+        ///     Модель транспорта.
         /// </summary>
         /// <exception cref="TransportException"></exception>
         public string Model
@@ -29,7 +37,7 @@ namespace EKRLib
         }
 
         /// <summary>
-        /// Мощность транспорта.
+        ///     Мощность транспорта.
         /// </summary>
         /// <exception cref="TransportException"></exception>
         public uint Power
@@ -45,18 +53,7 @@ namespace EKRLib
         }
 
         /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        /// <param name="model">Модель.</param>
-        /// <param name="power">Мощность.</param>
-        protected Transport(string model, uint power)
-        {
-            Model = model;
-            Power = power;
-        }
-
-        /// <summary>
-        /// Являются ли входные данные для мощности корректными?
+        ///     Являются ли входные данные для мощности корректными?
         /// </summary>
         /// <param name="value">Входные данные.</param>
         /// <returns>true – корректны, false – нет.</returns>
@@ -66,7 +63,7 @@ namespace EKRLib
         }
 
         /// <summary>
-        /// Являются ли входные данные для модели корректными?
+        ///     Являются ли входные данные для модели корректными?
         /// </summary>
         /// <param name="value">Входные данные.</param>
         /// <returns>true – корректны, false – нет.</returns>
@@ -78,17 +75,15 @@ namespace EKRLib
             if (value.Length != 5)
                 return false;
 
-            foreach (char item in value)
-            {
+            foreach (var item in value)
                 if (item is (< 'A' or > 'Z') and (< '0' or > '9'))
                     return false;
-            }
 
             return true;
         }
 
         /// <summary>
-        /// Переопределение метода ToString.
+        ///     Переопределение метода ToString.
         /// </summary>
         /// <returns>Строка.</returns>
         public override string ToString()
@@ -97,7 +92,7 @@ namespace EKRLib
         }
 
         /// <summary>
-        /// Запуск двигателя.
+        ///     Запуск двигателя.
         /// </summary>
         /// <returns>Строка.</returns>
         public abstract string StartEngine();

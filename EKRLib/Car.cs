@@ -1,12 +1,12 @@
 namespace EKRLib
 {
     /// <summary>
-    /// Класс Car.
+    ///     Класс Car.
     /// </summary>
     public class Car : Transport
     {
         /// <summary>
-        /// Конструктор класса.
+        ///     Конструктор класса.
         /// </summary>
         /// <param name="model">Модель.</param>
         /// <param name="power">Мощность.</param>
@@ -15,7 +15,7 @@ namespace EKRLib
         }
 
         /// <summary>
-        /// Запуск двигателя.
+        ///     Запуск двигателя.
         /// </summary>
         /// <returns>Строка.</returns>
         public override string StartEngine()
@@ -24,7 +24,7 @@ namespace EKRLib
         }
 
         /// <summary>
-        /// Переопределение метода ToString.
+        ///     Переопределение метода ToString.
         /// </summary>
         /// <returns>Строка.</returns>
         public override string ToString()
