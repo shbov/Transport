@@ -6,6 +6,10 @@ namespace EKRLib
     [Serializable]
     public class TransportException : Exception
     {
+        public TransportException()
+        {
+        }
+
         public TransportException(string message) : base(message)
         {
         }

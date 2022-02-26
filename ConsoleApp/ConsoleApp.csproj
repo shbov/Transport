@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\EKRLib\EKRLib.csproj"/>
+        <ProjectReference Include="..\EKRLib\EKRLib.csproj" />
     </ItemGroup>
 
 </Project>

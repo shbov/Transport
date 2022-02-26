@@ -21,15 +21,22 @@ namespace ConsoleApp
         /// </summary>
         private static void Main()
         {
-            var length = s_rnd.Next(6, 10 + 1);
-            var transports = new Transport[length];
+            do
+            {
+                var length = s_rnd.Next(6, 10);
+                var transports = new Transport[length];
 
-            for (var i = 0; i < length; i++) transports[i] = GenerateTransport();
+                for (var i = 0; i < length; i++)
+                {
+                    transports[i] = GenerateTransport();
+                    Console.WriteLine(transports[i].StartEngine());
+                }
 
-            foreach (var transport in transports) Console.WriteLine(transport.StartEngine());
+                Write(transports.Where(item => item is Car).ToArray(), "Cars.txt");
+                Write(transports.Where(item => item is MotorBoat).ToArray(), "MotorBoats.txt");
 
-            Write(transports.Where(item => item is Car).ToArray(), "Cars.txt");
-            Write(transports.Where(item => item is MotorBoat).ToArray(), "MotorBoats.txt");
+                Console.WriteLine("Повторим? 'Y' – да, иначе – любая клавиша.");
+            } while (Console.ReadKey(true).Key == ConsoleKey.Y);
         }
 
         /// <summary>
@@ -65,9 +72,10 @@ namespace ConsoleApp
         /// <param name="fileName">Название файла.</param>
         private static void Write(Transport[] transports, string fileName)
         {
+            var sep = Path.DirectorySeparatorChar;
             try
             {
-                using var sw = new StreamWriter(fileName, false, Encoding.Unicode);
+                using var sw = new StreamWriter($"..{sep}..{sep}..{sep}{fileName}", false, Encoding.Unicode);
 
                 var sb = new StringBuilder();
                 foreach (var item in transports) sb.Append(item + Environment.NewLine);

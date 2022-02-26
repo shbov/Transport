@@ -389,3 +389,7 @@ FodyWeavers.xsd
 *.sln.iml
 
 Lectors/Lectors/
+
+Cars.txt
+
+MotorBoats.txt
