@@ -73,9 +73,10 @@ namespace ConsoleApp
         private static void Write(Transport[] transports, string fileName)
         {
             var sep = Path.DirectorySeparatorChar;
+            
             try
             {
-                using var sw = new StreamWriter($"..{sep}..{sep}..{sep}{fileName}", false, Encoding.Unicode);
+                using var sw = new StreamWriter($"..{sep}..{sep}..{sep}..{sep}{fileName}", false, Encoding.Unicode);
 
                 var sb = new StringBuilder();
                 foreach (var item in transports) sb.Append(item + Environment.NewLine);
