@@ -73,7 +73,7 @@ namespace ConsoleApp
         private static void Write(Transport[] transports, string fileName)
         {
             var sep = Path.DirectorySeparatorChar;
-            
+
             try
             {
                 using var sw = new StreamWriter($"..{sep}..{sep}..{sep}..{sep}{fileName}", false, Encoding.Unicode);

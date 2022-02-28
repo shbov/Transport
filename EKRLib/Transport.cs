@@ -1,4 +1,6 @@
-﻿namespace EKRLib
+﻿using System.Linq;
+
+namespace EKRLib
 {
     /// <summary>
     ///     Абстрактный класс Transport
@@ -24,12 +26,12 @@
         ///     Модель транспорта.
         /// </summary>
         /// <exception cref="TransportException"></exception>
-        public string Model
+        protected string Model
         {
             get => _model;
-            set
+            init
             {
-                if (!checkModelInput(value))
+                if (!CheckModelInput(value))
                     throw new TransportException($"Недопустимая модель {value}");
 
                 _model = value;
@@ -40,12 +42,12 @@
         ///     Мощность транспорта.
         /// </summary>
         /// <exception cref="TransportException"></exception>
-        public uint Power
+        private uint Power
         {
             get => _power;
-            set
+            init
             {
-                if (!checkPowerInput(value))
+                if (!CheckPowerInput(value))
                     throw new TransportException("мощность не может быть меньше 20 л.с.");
 
                 _power = value;
@@ -57,7 +59,7 @@
         /// </summary>
         /// <param name="value">Входные данные.</param>
         /// <returns>true – корректны, false – нет.</returns>
-        private bool checkPowerInput(uint value)
+        private static bool CheckPowerInput(uint value)
         {
             return value >= 20;
         }
@@ -67,19 +69,12 @@
         /// </summary>
         /// <param name="value">Входные данные.</param>
         /// <returns>true – корректны, false – нет.</returns>
-        private bool checkModelInput(string value)
+        private static bool CheckModelInput(string value)
         {
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value) || value.Length != 5)
                 return false;
 
-            if (value.Length != 5)
-                return false;
-
-            foreach (var item in value)
-                if (item is (< 'A' or > 'Z') and (< '0' or > '9'))
-                    return false;
-
-            return true;
+            return value.All(item => item is >= 'A' and <= 'Z' or >= '0' and <= '9');
         }
 
         /// <summary>
